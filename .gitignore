@@ -1,3 +1,9 @@
 /SpringPractise.iml
 /.idea/
 /Config/Config.iml
+/Injection/Injection.iml
+/Scanning/Scanning.iml
+/ScanningDependency/ScanningDependency.iml
+/ScanningApi/ScanningApi.iml
+/RestServices/RestServices.iml
+/ListOfBeans/ListOfBeans.iml
