@@ -5,15 +5,15 @@ import pl.bolka.aleksander.animaltask.AnimalType;
 import pl.bolka.aleksander.api.Animal;
 
 @Service
-public class DogService implements Animal {
+public class MouseService implements Animal {
 
   @Override
   public AnimalType getType() {
-    return AnimalType.DOG;
+    return AnimalType.MOUSE;
   }
 
   @Override
   public String getVoice() {
-    return "Bark!";
+    return "Pii";
   }
 }

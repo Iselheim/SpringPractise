@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bolka.aleksander.model.User;
 import pl.bolka.aleksander.service.UserService;
 
-@RestController("/test")
+@RestController
+@RequestMapping("/test")
 public class UserController {
 
   private final UserService userService;

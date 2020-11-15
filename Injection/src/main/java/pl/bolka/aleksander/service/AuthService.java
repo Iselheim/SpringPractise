@@ -1,7 +1,6 @@
 package pl.bolka.aleksander.service;
 
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bolka.aleksander.model.AuthData;
 import pl.bolka.aleksander.model.User;
@@ -9,17 +8,23 @@ import pl.bolka.aleksander.model.User;
 @Service
 public class AuthService {
 
-  @Autowired
-  private FindByLogin findByLoginService;
+  private final FindByLogin findByLoginService;
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
 
-  @Autowired
-  private RealPasswordService realPasswordService;
+  private final RealPasswordService realPasswordService;
 
-  @Autowired
-  private ComparePasswordService comparePasswordService;
+  private final ComparePasswordService comparePasswordService;
+
+  public AuthService(FindByLogin findByLoginService,
+                     UserService userService,
+                     RealPasswordService realPasswordService,
+                     ComparePasswordService comparePasswordService) {
+    this.findByLoginService = findByLoginService;
+    this.userService = userService;
+    this.realPasswordService = realPasswordService;
+    this.comparePasswordService = comparePasswordService;
+  }
 
   public boolean authorize(AuthData authData) {
     String id = findByLoginService.find(authData.getLogin());
