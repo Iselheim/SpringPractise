@@ -3,29 +3,25 @@ package pl.bolka.aleksander.service;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.bolka.aleksander.api.PasswordChecker;
+import pl.bolka.aleksander.api.UserService;
 import pl.bolka.aleksander.model.AuthData;
 import pl.bolka.aleksander.model.User;
 
 @Service
 public class AuthService {
 
-  @Autowired
-  private FindByLogin findByLoginService;
+  private final UserService userService;
+  private final PasswordChecker passwordChecker;
 
-  @Autowired
-  private UserService userService;
-
-  @Autowired
-  private RealPasswordService realPasswordService;
-
-  @Autowired
-  private ComparePasswordService comparePasswordService;
+  public AuthService(UserService userService, PasswordChecker passwordChecker) {
+    this.userService = userService;
+    this.passwordChecker = passwordChecker;
+  }
 
   public boolean authorize(AuthData authData) {
-    String id = findByLoginService.find(authData.getLogin());
-    User user = userService.getUser(id);
-    String realPassword = realPasswordService.getRealPassword(user.getPassword());
-    return comparePasswordService.compare(realPassword, authData.getPassword());
+    User user = userService.findUserByLogin(authData.getLogin());
+    return passwordChecker.isPasswordCorrect(user.getPassword(), authData.getPassword());
   }
 
   @PostConstruct

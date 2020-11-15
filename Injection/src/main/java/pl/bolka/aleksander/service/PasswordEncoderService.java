@@ -2,12 +2,14 @@ package pl.bolka.aleksander.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pl.bolka.aleksander.api.PasswordEncoder;
 
 @Service
 @Slf4j
-public class RealPasswordService {
+class PasswordEncoderService implements PasswordEncoder {
 
-  public String getRealPassword(String password) {
+  @Override
+  public String encode(String password) {
     log.info("RealPasswordService.getRealPassword");
     return password.toLowerCase();
   }

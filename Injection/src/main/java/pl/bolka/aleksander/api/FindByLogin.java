@@ -1,4 +1,4 @@
-package pl.bolka.aleksander.service;
+package pl.bolka.aleksander.api;
 
 public interface FindByLogin {
 
